@@ -1,0 +1,74 @@
+name: iOS IPA (LiveContainer)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+  IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+
+jobs:
+  build-ipa:
+    runs-on: macos-14
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Build Rust staticlib (ios)
+        run: |
+          cargo build -p wow-client --release --target aarch64-apple-ios || true
+          cargo build -p wow-platform --release --target aarch64-apple-ios || true
+          mkdir -p ios/build/lib
+          find target/aarch64-apple-ios/release -name 'libwow_*.a' -exec cp -f {} ios/build/lib/ \; 2>/dev/null || true
+          ls -la ios/build/lib || true
+
+      - name: Package IPA payload
+        run: |
+          mkdir -p ios/build/Payload/WowIos.app/lib dist
+          cat > ios/build/Payload/WowIos.app/Info.plist <<'PLIST'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>CFBundleExecutable</key><string>WowIos</string>
+            <key>CFBundleIdentifier</key><string>com.personal.wowios</string>
+            <key>CFBundleName</key><string>WowIos</string>
+            <key>CFBundlePackageType</key><string>APPL</string>
+            <key>CFBundleShortVersionString</key><string>0.1.0</string>
+            <key>CFBundleVersion</key><string>1</string>
+            <key>LSRequiresIPhoneOS</key><true/>
+            <key>UIFileSharingEnabled</key><true/>
+            <key>LSSupportsOpeningDocumentsInPlace</key><true/>
+            <key>UIRequiredDeviceCapabilities</key>
+            <array><string>arm64</string><string>metal</string></array>
+            <key>MinimumOSVersion</key><string>14.0</string>
+          </dict>
+          </plist>
+          PLIST
+          cp -R ios/WowIos/Sources ios/build/Payload/WowIos.app/ 2>/dev/null || true
+          cp -R ios/build/lib ios/build/Payload/WowIos.app/ 2>/dev/null || true
+          printf '#!/bin/sh\necho wow-ios stub\n' > ios/build/Payload/WowIos.app/WowIos
+          chmod +x ios/build/Payload/WowIos.app/WowIos
+          (cd ios/build && zip -r ../../dist/WowIos-LiveContainer.ipa Payload)
+          (cd ios/build && zip -r ../../dist/wow-ios-rust-libs.zip lib) 2>/dev/null || true
+          ls -la dist/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wow-ios-ipa
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,13 @@
+/target/
+**/*.rs.bk
+.DS_Store
+*.ipa
+*.app
+DerivedData/
+.xcuserdata/
+*.xcuserstate
+.env
+*.mpq
+*.MPQ
+/Data/
+/WoW335/
