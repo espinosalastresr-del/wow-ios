@@ -1,0 +1,26 @@
+name: WowIos
+options:
+  bundleIdPrefix: com.personal
+  deploymentTarget:
+    iOS: "15.0"
+settings:
+  base:
+    TARGETED_DEVICE_FAMILY: "1,2"
+    SWIFT_VERSION: "5.0"
+    ENABLE_BITCODE: false
+targets:
+  WowIos:
+    type: application
+    platform: iOS
+    sources:
+      - path: WowIos/Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.personal.wowios
+        INFOPLIST_FILE: WowIos/Info.plist
+        OTHER_LDFLAGS:
+          - -lwow_client
+          - -lobjc
+          - -lc++
+        CODE_SIGNING_ALLOWED: "NO"
+        CODE_SIGNING_REQUIRED: "NO"
