@@ -1,0 +1,17 @@
+[package]
+name = "wow-test-server"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "wow-test-server"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+byteorder = { workspace = true }
+rand = { workspace = true }

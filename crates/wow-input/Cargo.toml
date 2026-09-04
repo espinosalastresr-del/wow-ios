@@ -1,0 +1,13 @@
+[package]
+name = "wow-input"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-core = { path = "../wow-core" }
+wow-platform = { path = "../wow-platform" }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+bitflags = { workspace = true }
+glam = { workspace = true }

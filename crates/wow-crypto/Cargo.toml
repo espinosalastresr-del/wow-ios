@@ -1,0 +1,12 @@
+[package]
+name = "wow-crypto"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow_srp = { workspace = true }
+sha1 = { workspace = true }
+hmac = { workspace = true }
+rand = { workspace = true }
+thiserror = { workspace = true }

@@ -1,0 +1,12 @@
+[package]
+name = "wow-world"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-math = { path = "../wow-math" }
+wow-common = { path = "../wow-common" }
+wow-protocol = { path = "../wow-protocol" }
+slotmap = { workspace = true }
+parking_lot = { workspace = true }
+tracing = { workspace = true }

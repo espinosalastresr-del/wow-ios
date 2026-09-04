@@ -1,0 +1,8 @@
+[package]
+name = "wow-math"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+glam = { workspace = true }
+bytemuck = { version = "1", features = ["derive"] }
