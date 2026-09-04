@@ -1,0 +1,11 @@
+[package]
+name = "wow-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-math = { path = "../wow-math" }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+glam = { workspace = true }

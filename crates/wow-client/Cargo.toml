@@ -1,0 +1,30 @@
+[package]
+name = "wow-client"
+version = "0.1.0"
+edition = "2021"
+default-run = "wow-client"
+
+[[bin]]
+name = "wow-client"
+path = "src/main.rs"
+
+[lib]
+name = "wow_client"
+crate-type = ["lib", "staticlib"]
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-core = { path = "../wow-core" }
+wow-platform = { path = "../wow-platform" }
+wow-renderer = { path = "../wow-renderer" }
+wow-input = { path = "../wow-input" }
+wow-ui = { path = "../wow-ui" }
+wow-net = { path = "../wow-net" }
+wow-world = { path = "../wow-world" }
+wow-math = { path = "../wow-math" }
+wow-assets = { path = "../wow-assets" }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
+anyhow = { workspace = true }
+crossbeam-channel = { workspace = true }
+glam = { workspace = true }

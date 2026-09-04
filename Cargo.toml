@@ -1,0 +1,49 @@
+[workspace]
+members = [
+    "crates/wow-common",
+    "crates/wow-crypto",
+    "crates/wow-math",
+    "crates/wow-protocol",
+    "crates/wow-formats",
+    "crates/wow-assets",
+    "crates/wow-world",
+    "crates/wow-net",
+    "crates/wow-core",
+    "crates/wow-renderer",
+    "crates/wow-input",
+    "crates/wow-audio",
+    "crates/wow-ui",
+    "crates/wow-platform",
+    "crates/wow-client",
+    "crates/wow-tools",
+    "crates/wow-test-server",
+]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+bytes = "1"
+byteorder = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "time", "sync"] }
+crossbeam-channel = "0.5"
+parking_lot = "0.12"
+lru = "0.12"
+rayon = "1"
+glam = "0.29"
+bytemuck = { version = "1", features = ["derive"] }
+wow_srp = "0.7"
+wow_login_messages = "0.5"
+wow_world_messages = { version = "0.3", features = ["sync", "wrath"] }
+wow_world_base = "0.3"
+wow-mpq = "0.4"
+fontdue = "0.9"
+pollster = "0.4"
+rand = "0.8"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+sha1 = "0.10"
+hmac = "0.12"
+sha-1 = "0.10"

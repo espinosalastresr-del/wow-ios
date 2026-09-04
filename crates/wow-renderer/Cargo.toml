@@ -1,0 +1,17 @@
+[package]
+name = "wow-renderer"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+gpu = []
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-platform = { path = "../wow-platform" }
+wow-math = { path = "../wow-math" }
+glam = { workspace = true }
+bytemuck = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

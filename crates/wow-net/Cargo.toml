@@ -1,0 +1,19 @@
+[package]
+name = "wow-net"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-crypto = { path = "../wow-crypto" }
+wow-protocol = { path = "../wow-protocol" }
+wow-world = { path = "../wow-world" }
+tokio = { workspace = true }
+crossbeam-channel = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+bytes = { workspace = true }
+byteorder = { workspace = true }
+wow_login_messages = { workspace = true }
+wow_world_messages = { workspace = true }
+wow_srp = { workspace = true }

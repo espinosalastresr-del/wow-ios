@@ -1,0 +1,14 @@
+[package]
+name = "wow-assets"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-mpq = { workspace = true }
+crossbeam-channel = { workspace = true }
+rayon = { workspace = true }
+lru = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+parking_lot = { workspace = true }

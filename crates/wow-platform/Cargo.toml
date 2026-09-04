@@ -1,0 +1,13 @@
+[package]
+name = "wow-platform"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+gpu = []
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+thiserror = { workspace = true }
+tracing = { workspace = true }

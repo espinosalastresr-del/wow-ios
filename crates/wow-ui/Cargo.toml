@@ -1,0 +1,10 @@
+[package]
+name = "wow-ui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-common = { path = "../wow-common" }
+wow-platform = { path = "../wow-platform" }
+wow-renderer = { path = "../wow-renderer" }
+tracing = { workspace = true }
